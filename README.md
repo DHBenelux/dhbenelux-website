@@ -2,6 +2,8 @@
 
 The DH BeNeLux website is a Next.js application for publishing conference history, news, journal volumes, and broader community milestones in one place.
 
+Repository: https://github.com/DHBenelux/dhbenelux-website
+
 This repository currently centers on a **single event-driven content model** in `content/events`, plus generated search data. This README reflects that current structure and the contributor workflow used in this project.
 
 ## What the project covers

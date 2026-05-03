@@ -1,7 +1,15 @@
 {
-  "name": "dh-benelux-redesign",
+  "name": "dhbenelux-website",
   "version": "1.0.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DHBenelux/dhbenelux-website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DHBenelux/dhbenelux-website/issues"
+  },
+  "homepage": "https://github.com/DHBenelux/dhbenelux-website",
   "scripts": {
     "build:search-index": "node scripts/build-search-index.mjs",
     "build": "next build",
