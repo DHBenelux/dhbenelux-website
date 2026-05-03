@@ -1,0 +1,47 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "schedule": ["on the first day of the month"],
+  "timezone": "Europe/Amsterdam",
+  "dependencyDashboard": true,
+  "separateMajorMinor": true,
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["patch"],
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "dependencyDashboardApproval": true
+    },
+    {
+      "groupName": "nextjs-react",
+      "matchPackageNames": ["next", "react", "react-dom", "@next/*"]
+    },
+    {
+      "groupName": "radix-ui",
+      "matchPackagePatterns": ["^@radix-ui/"]
+    },
+    {
+      "groupName": "tailwind-tooling",
+      "matchPackageNames": [
+        "tailwindcss",
+        "@tailwindcss/postcss",
+        "postcss",
+        "autoprefixer"
+      ]
+    },
+    {
+      "groupName": "typescript-types",
+      "matchPackagePatterns": ["^@types/"],
+      "matchDepTypes": ["devDependencies"]
+    },
+    {
+      "description": "Keep devDependencies as pinned versions",
+      "matchDepTypes": ["devDependencies"],
+      "rangeStrategy": "pin"
+    }
+  ]
+}
