@@ -1,4 +1,5 @@
 import './globals.css';
+import { DraftNotice } from '@/components/DraftNotice';
 import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { Lato, Merriweather } from 'next/font/google';
@@ -111,6 +112,7 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+        <DraftNotice />
         {children}
       </body>
     </html>
