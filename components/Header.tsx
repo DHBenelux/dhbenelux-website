@@ -7,6 +7,7 @@ import {
   SheetContent,
   SheetTrigger,
 } from '@/components/Sheet';
+import logoImage from '@/public/logo.png';
 import { Menu, Search, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -32,7 +33,7 @@ export function Header() {
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center">
             <Image
-              src="/logo.png"
+              src={logoImage}
               alt="Digital Humanities BeNeLux Logo"
               width={160}
               height={50}
@@ -52,8 +53,8 @@ export function Header() {
               >
                 <Link
                   href={link.href}
-                  target={link.external ? '_blank' : '_self'}
-                  rel={link.external ? 'noopener noreferrer' : ''}
+                  target={link.external ? '_blank' : undefined}
+                  rel={link.external ? 'noopener noreferrer' : undefined}
                 >
                   {link.label}
                 </Link>
@@ -81,8 +82,6 @@ export function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {' '}
-                {/* Added example Twitter link */}
                 <svg
                   viewBox="0 0 24 24"
                   fill="currentColor"
@@ -164,8 +163,10 @@ export function Header() {
                         <SheetClose asChild key={`mobile-nav-${link.href}`}>
                           <Link
                             href={link.href}
-                            target={link.external ? '_blank' : '_self'}
-                            rel={link.external ? 'noopener noreferrer' : ''}
+                            target={link.external ? '_blank' : undefined}
+                            rel={
+                              link.external ? 'noopener noreferrer' : undefined
+                            }
                             className="block rounded-lg px-3 py-2 text-foreground hover:bg-accent hover:text-accent-foreground transition"
                           >
                             {link.label}

@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   basePath,
+  assetPrefix: basePath || undefined,
 };
 
 const withMDX = createMDX({});

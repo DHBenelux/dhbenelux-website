@@ -19,6 +19,11 @@ const merriweather = Merriweather({
   variable: '--font-merriweather',
 });
 
+const isGitHubPagesBuild = process.env.GITHUB_ACTIONS === 'true';
+const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? '';
+const basePath = isGitHubPagesBuild && repoName ? `/${repoName}` : '';
+const withBasePath = (path: string) => `${basePath}${path}`;
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://dhbenelux.org'),
   title: {
@@ -81,14 +86,25 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      {
+        url: withBasePath('/favicon-32x32.png'),
+        sizes: '32x32',
+        type: 'image/png',
+      },
+      {
+        url: withBasePath('/favicon-16x16.png'),
+        sizes: '16x16',
+        type: 'image/png',
+      },
     ],
     apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      {
+        url: withBasePath('/apple-touch-icon.png'),
+        sizes: '180x180',
+        type: 'image/png',
+      },
     ],
   },
-  verification: {},
 };
 
 export default function RootLayout({
