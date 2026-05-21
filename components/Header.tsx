@@ -37,7 +37,7 @@ export function Header() {
               alt="Digital Humanities BeNeLux Logo"
               width={160}
               height={50}
-              style={{ width: 'auto', height: 'auto' }}
+              className="w-40 h-auto"
               priority
             />
           </Link>
