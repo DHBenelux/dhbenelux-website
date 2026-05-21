@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og';
 
+export const dynamic = 'force-static';
 export const alt = 'Digital Humanities BeNeLux';
 export const size = {
   width: 1200,

@@ -12,20 +12,11 @@ type NewsPost = Awaited<ReturnType<typeof getNewsposts>>[number] & {
   link?: string;
 };
 
-export default async function NewsPage({
-  searchParams,
-}: {
-  searchParams?: Promise<{ filter?: string }>;
-}) {
+export default async function NewsPage() {
   const newsPosts = await getNewsposts();
-  const { filter } = (await searchParams) || {};
 
-  const filteredPosts = filter
-    ? newsPosts.filter((post) => post.tags?.includes(filter))
-    : newsPosts;
-
-  const [featuredPost, ...rest] = filteredPosts;
-  const featuredPostMeta = filteredPosts.length
+  const [featuredPost, ...rest] = newsPosts;
+  const featuredPostMeta = newsPosts.length
     ? {
         destination: resolvePostDestination(featuredPost),
         category: featuredPost.category?.trim() || 'Announcement',
@@ -59,7 +50,7 @@ export default async function NewsPage({
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="max-w-6xl mx-auto space-y-12">
-            {filteredPosts.length > 0 && featuredPostMeta && (
+            {newsPosts.length > 0 && featuredPostMeta && (
               <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-stretch">
                 <div className="lg:col-span-3 rounded-2xl border border-teal-700 bg-teal-700 text-white p-6 shadow-md flex flex-col">
                   <div className="text-xs font-semibold text-teal-100 mb-3 uppercase tracking-wide">
@@ -138,8 +129,7 @@ export default async function NewsPage({
                   All announcements
                 </h2>
                 <div className="text-sm text-muted-foreground">
-                  {filteredPosts.length} posts
-                  {filter ? ` tagged with ${filter}` : ''}
+                  {newsPosts.length} posts
                 </div>
               </div>
 
@@ -157,12 +147,10 @@ export default async function NewsPage({
               ))}
             </div>
 
-            {filteredPosts.length === 0 && (
+            {newsPosts.length === 0 && (
               <div className="text-center py-16 bg-muted border border-dashed border-border rounded-xl">
                 <p className="text-muted-foreground text-lg">
-                  {filter
-                    ? `No ${filter} posts available right now.`
-                    : 'No news posts available at the moment.'}
+                  No news posts available at the moment.
                 </p>
                 <p className="text-sm text-muted-foreground mt-2">
                   Check back soon or subscribe to the mailing list for updates.
