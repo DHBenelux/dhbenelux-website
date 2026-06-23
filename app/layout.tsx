@@ -24,8 +24,14 @@ const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? '';
 const basePath = isGitHubPagesBuild && repoName ? `/${repoName}` : '';
 const withBasePath = (path: string) => `${basePath}${path}`;
 
+// For GitHub Pages deployment, use the actual deployed URL; otherwise use primary domain
+const metadataBaseUrl =
+  isGitHubPagesBuild && repoName
+    ? `https://dhbenelux.github.io/${repoName}`
+    : 'https://dhbenelux.org';
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://dhbenelux.org'),
+  metadataBase: new URL(metadataBaseUrl),
   title: {
     default: 'Digital Humanities BeNeLux',
     template: '%s | Digital Humanities BeNeLux',
@@ -50,14 +56,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://dhbenelux.org',
+    url: metadataBaseUrl,
     siteName: 'Digital Humanities BeNeLux',
     title: 'Digital Humanities BeNeLux',
     description:
       'The official hub for the Digital Humanities BeNeLux community, connecting researchers across Belgium, the Netherlands, and Luxembourg.',
     images: [
       {
-        url: '/opengraph-image',
+        url: `${metadataBaseUrl}${withBasePath('/opengraph-image')}`,
         width: 1200,
         height: 630,
         alt: 'Digital Humanities BeNeLux',
@@ -71,7 +77,7 @@ export const metadata: Metadata = {
     title: 'Digital Humanities BeNeLux',
     description:
       'The official hub for the Digital Humanities BeNeLux community, connecting researchers across Belgium, the Netherlands, and Luxembourg.',
-    images: ['/opengraph-image'],
+    images: [`${metadataBaseUrl}${withBasePath('/opengraph-image')}`],
   },
   robots: {
     index: true,

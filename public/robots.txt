@@ -1,0 +1,8 @@
+# DH BeNeLux Website Robots File
+# Allows all search engines full crawl access
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://dhbenelux.github.io/dhbenelux-website/sitemap.xml
